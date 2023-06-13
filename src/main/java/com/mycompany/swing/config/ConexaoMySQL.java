@@ -9,7 +9,7 @@ public class ConexaoMySQL {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             return DriverManager.getConnection("jdbc:" + "mysql" + "://" + "localhost" + ":" + "3306" + "/" + "watchmanSystem" + "?" + "useSSL=false&allowPublicKeyRetrieval=true",
-                    "root", "Viniciuscruz07");
+                    "root", "root");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
         }

@@ -361,10 +361,9 @@ public class App extends javax.swing.JFrame {
             throw new RuntimeException(e);
         }
         
-        Dados dados = new Dados();
+        Dados dados = new Dados(nomeDigitado, senhaDigitada);
         this.setVisible(false);
-        dados.setVisible(true);
-    }
+        dados.setVisible(true);    }
 
     /**
      * @param args the command line arguments

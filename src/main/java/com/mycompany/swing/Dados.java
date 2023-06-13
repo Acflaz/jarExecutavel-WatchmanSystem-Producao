@@ -5,6 +5,7 @@
 package com.mycompany.swing;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.janelas.JanelaGrupo;
 import com.github.britooo.looca.api.group.memoria.Memoria;
 import com.github.britooo.looca.api.group.processador.Processador;
 import com.github.britooo.looca.api.group.sistema.Sistema;
@@ -23,6 +24,8 @@ import static com.mycompany.swing.dominio.entidades.Usuario.insertUsuario;
 import com.mycompany.swing.repositorio.LeituraRepositorio;
 import com.mycompany.swing.repositorio.NotebookRepositorioMYSQL;
 import com.mycompany.swing.repositorio.NotebookRepositorioSQLServer;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -41,7 +44,8 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author victo
  */
 public class Dados extends javax.swing.JFrame {
-
+    private String nome;
+    private String senha;
     /**
      * Creates new form dados
      */
@@ -49,6 +53,14 @@ public class Dados extends javax.swing.JFrame {
         initComponents();
     }
 
+    public Dados(String nomeDigitado, String senhaDigitada) {
+        this.nome = nomeDigitado;
+        this.senha = senhaDigitada;
+        initComponents();
+
+    }
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -167,9 +179,8 @@ public class Dados extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String nomeDigitado = "Erick";
-        String senhaDigitada = "Acessar@";
-        System.out.println("Usuário:" + nomeDigitado);
+
+        System.out.println("Usuário:" + nome);
 
         ConexaoSQLServer conexaoSQLServer = new ConexaoSQLServer();
         JdbcTemplate con = conexaoSQLServer.getConexaoDoBanco();
@@ -292,7 +303,7 @@ public class Dados extends javax.swing.JFrame {
 
             try {
                 Usuario listaUsuario = con.queryForObject("SELECT * FROM usuario WHERE nome = ? AND senha = ?",
-                        new BeanPropertyRowMapper<>(Usuario.class), nomeDigitado, senhaDigitada);
+                        new BeanPropertyRowMapper<>(Usuario.class), nome, senha);
                 System.out.println("Usuário logado!");
 
                 assert listaUsuario != null;
@@ -362,7 +373,15 @@ public class Dados extends javax.swing.JFrame {
                             );
 
                             leituraRepositorio.inserir(leitura);
-
+                            
+                            if(percentualMemoria > 70 || percentualCPUWithMin > 60){
+                                FileWriter arq = new FileWriter("home\\Descktop\\log.txt");
+                                PrintWriter gravarArq = new PrintWriter(arq);
+                                JanelaGrupo janelas = looca.getGrupoDeJanelas();
+        
+                                gravarArq.printf(janelas.getJanelasVisiveis().toString());
+                                arq.close();
+                            }
                         } catch (Exception e) {
                             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "Erro ao capturar dados", e);
                         }
