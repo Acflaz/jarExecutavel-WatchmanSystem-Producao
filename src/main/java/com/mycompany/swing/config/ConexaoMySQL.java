@@ -8,7 +8,7 @@ public class ConexaoMySQL {
     public Connection getJdbcTemplateMySQL() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection("jdbc:" + "mysql" + "://" + "localhost" + ":" + "3306" + "/" + "monitoramen" + "?" + "useSSL=false&allowPublicKeyRetrieval=true",
+            return DriverManager.getConnection("jdbc:" + "mysql" + "://" + "localhost" + ":" + "3306" + "/" + "monitoramento" + "?" + "useSSL=false&allowPublicKeyRetrieval=true",
                     "root", "root");
         } catch (ClassNotFoundException | SQLException e) {
             throw new RuntimeException(e);
