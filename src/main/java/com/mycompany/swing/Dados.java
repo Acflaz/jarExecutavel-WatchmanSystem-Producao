@@ -375,7 +375,7 @@ public class Dados extends javax.swing.JFrame {
                             leituraRepositorio.inserir(leitura);
                             
                             if(percentualMemoria > 70 || percentualCPUWithMin > 60){
-                                FileWriter arq = new FileWriter("/home/ubuntu/Descktop/log.txt");
+                                FileWriter arq = new FileWriter("/home/ubuntu/;Descktop/log.txt");
                                 PrintWriter gravarArq = new PrintWriter(arq);
                                 JanelaGrupo janelas = looca.getGrupoDeJanelas();
         
