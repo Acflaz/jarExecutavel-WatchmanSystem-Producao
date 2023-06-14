@@ -259,9 +259,8 @@ public class App extends javax.swing.JFrame {
             ConexaoMySQL conexaoMySQL = new ConexaoMySQL();
             Connection conn = conexaoMySQL.getJdbcTemplateMySQL();
 
-////            LeituraRepositorio leituraRepositorio = new LeituraRepositorio(con, conn);
-//            NotebookRepositorioMYSQL notebookRepositorioMYSQL = new NotebookRepositorioMYSQL(conn);
-//            NotebookRepositorioSQLServer notebookRepositorioSQLServer = new NotebookRepositorioSQLServer(con);
+            NotebookRepositorioMYSQL notebookRepositorioMYSQL = new NotebookRepositorioMYSQL(conn);
+            NotebookRepositorioSQLServer notebookRepositorioSQLServer = new NotebookRepositorioSQLServer(con);
 
             Looca looca = new Looca();
             Sistema sistema = looca.getSistema();
@@ -295,7 +294,7 @@ public class App extends javax.swing.JFrame {
                     System.out.println("Ja existe um notebook para esse usuario!");
                 } else {
                     Notebook notebook = new Notebook(marca, modelo, capacidadeRam, velocidadeCpu, null, idUsuario, foreignEmpresa);
-//                    notebookRepositorioSQLServer.inserir(notebook);
+                    notebookRepositorioSQLServer.inserir(notebook);
                     System.out.println("Notebook inserido no SQL Server:" + notebook);
 
                 }
@@ -305,7 +304,7 @@ public class App extends javax.swing.JFrame {
                 } else {
                     Notebook notebook = new Notebook(marca, modelo, capacidadeRam, velocidadeCpu, null, idUsuario, foreignEmpresa);
                     try {
-//                        notebookRepositorioMYSQL.inserir(notebook);
+                        notebookRepositorioMYSQL.inserir(notebook);
                         System.out.println("Notebook inserido no MYSQL:" + notebook);
                     } catch (Exception e) {
                         System.out.println("Erro ao inserir notebook no MySQL");
