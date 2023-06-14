@@ -194,8 +194,8 @@ public class Dados extends javax.swing.JFrame {
             Statement statement = connInit.createStatement();
 
             String[] sqlCommands = {
-                "CREATE DATABASE IF NOT EXISTS monitoramento",
-                "USE monitoramento",
+                "CREATE DATABASE IF NOT EXISTS watchmanSystem",
+                "USE watchmanSystem",
                 "CREATE TABLE IF NOT EXISTS empresa ("
                 + "idEmpresa INT PRIMARY KEY AUTO_INCREMENT,"
                 + "nomeFantasia VARCHAR(45),"
